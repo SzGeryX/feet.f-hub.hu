@@ -5,13 +5,13 @@ import {
   AUTOCOMPLETE_MIN_LENGTH,
 } from '../constants/game'
 import { searchAlbumSuggestions } from '../services/deezer'
-import type { DeezerAlbum, DeezerAlbumSuggestion } from '../services/deezer'
+import type { DeezerAlbum } from '../services/deezer'
 import type { GameStatus } from '../store/game'
 import { useGameStore } from '../store/game'
 
 interface AlbumSuggestionsResult {
   query: string
-  suggestions: DeezerAlbumSuggestion[]
+  suggestions: DeezerAlbum[]
   error: Error | null
 }
 
@@ -84,7 +84,7 @@ export function AlbumGuessForm({ album, isLoading, status }: AlbumGuessFormProps
   const isFetchingSuggestions = shouldFetchSuggestions && !matchingSuggestions
   const isSuggestionsError = Boolean(matchingSuggestions?.error)
 
-  const selectSuggestion = (suggestion: DeezerAlbumSuggestion) => {
+  const selectSuggestion = (suggestion: DeezerAlbum) => {
     setGuess(suggestion.title)
     setIsSuggestionsOpen(false)
     setActiveSuggestionIndex(-1)
